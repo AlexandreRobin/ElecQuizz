@@ -1,0 +1,34 @@
+<resources>
+    <string name="app_name">ElecQuizz</string>
+    <string name="credit">
+        "BY\n\n\n"
+
+        "ALEXANDRE ROBIN : PROGRAMMER\n\n"
+        "VIRGIL TOURNEUR : GRAPHIC ARTIST\n\n"
+        "YANN GUILLOU : LEVEL DESIGNER\n\n\n\n"
+
+        "CREATED WITHIN THE FRAMEWORK OF THE PRESONAL INITIATIVE WORK SUPERVISED BY E.S.E.O\n\n\n\n"
+
+        "OPEN SOURCE PROJECT : github.com"
+</string>
+    <string name="EASY">EASY</string>
+    <string name="MEDIUM">MEDIUM</string>
+    <string name="HARD">HARD</string>
+    <string name="background">background</string>
+    <string name="back">back</string>
+    <string name="play">PLAY</string>
+    <string name="settings">SETTINGS</string>
+    <string name="credits">CREDIT</string>
+    <string name="easy">EASY</string>
+    <string name="easy_score2">easy_score2</string>
+    <string name="medium">MEDIUM</string>
+    <string name="medium_score2">medium_score2</string>
+    <string name="hard">HARD</string>
+    <string name="hard_score2">hard_score2</string>
+    <string name="sound">SOUND</string>
+    <string name="image">image</string>
+    <string name="score1">score1</string>
+    <string name="score2">score2</string>
+    <string name="score3">score3</string>
+    <string name="title">title</string>
+</resources>
