@@ -36,19 +36,40 @@ public class Level extends AppCompatActivity {
     public static String[][][] array =
             {
                     {//EASY
-                            {"16.4", "14.6", "95", "380", "2"},//answer1, answer2, answer3, answer4, id of correct answer
-                            {"3V", "5V", "6.5V", "7.5V", "3"},
-                            {"0.01A", "100mA", "20mA", "0.2", "3"},
-                    },
-                    {//MEDIUM
-                            {"di/dt+(1/LC)*i=0", "di/dt+(L/C)*i=0", "di/dt+(1/C)*i=0", "di/dt+(1/LC²)*i=0", "1"},
-                            {"du/dt+(1/R)*U=0", "du/dt+(1/RL)*U=0", "RL*(du/dt)+(1/L)*U=0", "du/dt+(R/L)*U=0", "4"},
-                    },
-                    {//HARD
-                            {"(du²/d²t)+(RC)*dU/dt+(L/C)*U=0", "(du²/d²t)+(R/C)*dU/dt+(L/C)*U=0", "(du²/d²t)+(1/RC)*dU/dt+(1/LC)*U=0", "(du²/d²t)+(1/RC)*dU/dt+(C/L)*U=0", "3"},
-                            {"(di²/d²t)+(RL)*di/dt+(C/L)*i=0", "(di²/d²t)+(RL)*di/dt+(1/LC)*i=0", "(di²/d²t)+(1/L)*di/dt+(1/LC)*i=0", "(di²/d²t)+(R/L)*di/dt+(1/LC)*i=0", "4"},
-                    }
-            };
+                            {"4V", "5V", "6V", "2V", "2"},//answer1, answer2, answer3, answer4, id of correct answer
+                            {"3V", "5V", "7V", "1V", "1"},
+                            {"4A", "5A", "2A", "1,2A", "1"},
+                            {"0,75", "0,5V", "1,5V", "0,25V", "2"},
+                            {"100", "75", "50", "40", "3"},
+                            {"0,01A", "0,05A", "0,1V", "0.1A", "4"},
+                            {"2*Z1+Z2", "Z1/(Z1+Z2)", "Z2/(Z1+Z2)", "2*Z2+Z1", "2"},
+                            {"300", "500", "250", "400", "1"},
+                            {"5V", "20V", "10V", "15V", "3"},
+                            {"3V", "5V", "8V", "2V", "4"},
+                            {"4,2V", "2V", "4V", "1V", "3"},
+                            {"0.01A", "100mA", "20mA", "0.2A", "2"},
+                            {"0.02A", "400mA", "250mA", "0.2A", "1"},
+                            {"(E1+E2-E3)/(Rg1+Rg2+Rg3+R1+R2+R3)", "(E1-E2-E3)/(Rg1+Rg2+Rg3+R1+R2+R3)", "(E1+E2+E3)/(Rg1+Rg2+Rg3+R1+R2+R3)", "(E1+E2-E3)/(Rg1+Rg2+Rg3-R1-R2-R3)", "1"},
+                            {"6A", "10A", "4A", "2A", "3"}
+                            },
+                            {//MEDIUM
+                                    {"16.4", "14.6", "95", "380", "2"},//answer1, answer2, answer3, answer4, id of correct answer
+                                    {"3V", "5V", "6.5V", "7.5V", "3"},
+                                    {"A Completer", "A Completer", "A Completer", "A Completer", "2"},
+                                    {"100", "68", "32", "14", "3"},
+                                    {"2/13", "4/15", "5/12", "0,5", "1"},
+                                    {"A Completer", "A Completer", "A Completer", "A Completer", "2"},
+                                    {"2/350", "4/225", "2/450", "2/225", "3"},
+                                    {"A Completer", "A Completer", "A Completer", "A Completer", "2"}
+                            },
+                            {//HARD
+                                    {"du/dt+(1/R)*U=0", "du/dt+(1/RL)*U=0", "RL*(du/dt)+(1/L)*U=0", "du/dt+(R/L)*U=0", "4"},
+                                    {"di/dt+(1/LC)*i=0", "di/dt+(L/C)*i=0", "di/dt+(1/C)*i=0", "di/dt+(1/LC²)*i=0", "1"},
+                                    {"(du²/d²t)+(RC)*dU/dt+(L/C)*U=0", "(du²/d²t)+(R/C)*dU/dt+(L/C)*U=0", "(du²/d²t)+(1/RC)*dU/dt+(1/LC)*U=0", "(du²/d²t)+(1/RC)*dU/dt+(C/L)*U=0", "3"},
+                                    {"(di²/d²t)+(RL)*di/dt+(C/L)*i=0", "(di²/d²t)+(RL)*di/dt+(1/LC)*i=0", "(di²/d²t)+(1/L)*di/dt+(1/LC)*i=0", "(di²/d²t)+(R/L)*di/dt+(1/LC)*i=0", "4"},
+                            }
+                    };
+
 
 
     //main method, start when the activity start
