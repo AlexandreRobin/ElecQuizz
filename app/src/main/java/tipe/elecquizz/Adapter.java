@@ -15,9 +15,9 @@ import android.widget.RelativeLayout;
 
 class Adapter extends BaseAdapter {
     //variable declaration
-    private Context mContext;
-    private int Lenght;
-    private int Level_type;
+    private final Context mContext;
+    private final int Lenght;
+    private final int Level_type;
 
     //initialize variable
     Adapter(Context c, int lenght, int level_type) {

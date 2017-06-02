@@ -11,9 +11,9 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentTop="true"
+        android:contentDescription="@string/background"
         android:scaleType="center"
-        android:src="@drawable/background"
-        android:contentDescription="@string/background" />
+        android:src="@drawable/background" />
 
     <ImageView
         android:id="@+id/back"
@@ -22,18 +22,18 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_margin="16sp"
+        android:contentDescription="@string/back"
         android:src="@drawable/ic_back"
-        android:visibility="invisible"
-        android:contentDescription="@string/back" />
+        android:visibility="invisible" />
 
     <ImageView
-        android:src="@drawable/banner"
         android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="100sp"
         android:layout_below="@+id/back"
         android:layout_centerHorizontal="true"
-        android:contentDescription="@string/title" />
+        android:contentDescription="@string/title"
+        android:src="@drawable/banner" />
 
     <Button
         android:id="@+id/play"
@@ -111,8 +111,8 @@
                 android:id="@+id/easy_score2"
                 android:layout_width="15sp"
                 android:layout_height="15sp"
-                android:src="@drawable/ic_score"
-                android:contentDescription="@string/easy_score2" />
+                android:contentDescription="@string/easy_score2"
+                android:src="@drawable/ic_score" />
 
             <TextView
                 android:id="@+id/easy_score3"
@@ -154,6 +154,14 @@
             android:padding="6sp"
             tools:targetApi="lollipop">
 
+            <ImageView
+                android:id="@+id/medium_score0"
+                android:layout_width="15sp"
+                android:layout_height="15sp"
+                android:contentDescription="@string/medium_score2"
+                android:src="@drawable/ic_lock"
+                android:visibility="gone" />
+
             <TextView
                 android:id="@+id/medium_score1"
                 android:layout_width="wrap_content"
@@ -165,8 +173,8 @@
                 android:id="@+id/medium_score2"
                 android:layout_width="15sp"
                 android:layout_height="15sp"
-                android:src="@drawable/ic_score"
-                android:contentDescription="@string/medium_score2" />
+                android:contentDescription="@string/medium_score2"
+                android:src="@drawable/ic_score" />
 
             <TextView
                 android:id="@+id/medium_score3"
@@ -209,6 +217,14 @@
             android:padding="6sp"
             tools:targetApi="lollipop">
 
+            <ImageView
+                android:id="@+id/hard_score0"
+                android:layout_width="15sp"
+                android:layout_height="15sp"
+                android:contentDescription="@string/hard_score2"
+                android:src="@drawable/ic_lock"
+                android:visibility="gone" />
+
             <TextView
                 android:id="@+id/hard_score1"
                 android:layout_width="wrap_content"
@@ -220,8 +236,8 @@
                 android:id="@+id/hard_score2"
                 android:layout_width="15sp"
                 android:layout_height="15sp"
-                android:src="@drawable/ic_score"
-                android:contentDescription="@string/hard_score2" />
+                android:contentDescription="@string/hard_score2"
+                android:src="@drawable/ic_score" />
 
             <TextView
                 android:id="@+id/hard_score3"
@@ -246,19 +262,19 @@
         android:visibility="gone" />
 
     <TextView
-        android:paddingTop="30sp"
-        android:layout_below="@+id/title"
-        android:layout_margin="16sp"
-        android:textAlignment="center"
         android:id="@+id/credit_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/title"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
+        android:layout_margin="16sp"
+        android:autoLink="web"
+        android:paddingTop="30sp"
         android:text="@string/credit"
+        android:textAlignment="center"
         android:textColor="@color/colorAccent"
         android:textSize="20sp"
-        android:autoLink="web"
         android:visibility="gone" />
 
 </RelativeLayout>

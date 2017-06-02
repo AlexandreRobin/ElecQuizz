@@ -29,11 +29,11 @@ public class Level extends AppCompatActivity {
     private int level_type;
     private int level_id;
     private int badAnswer = 0;
-    private int reverselist[] = new int[4];
+    private final int reverselist[] = new int[4];
     private MediaPlayer mp;
     private MediaPlayer mpgood;
     private MediaPlayer mpbad;
-    public static String[][][] array =
+    public final static String[][][] array =
             {
                     {//EASY
                             {"4V", "5V", "6V", "2V", "2"},//answer1, answer2, answer3, answer4, id of correct answer

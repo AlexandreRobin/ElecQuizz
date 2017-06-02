@@ -77,10 +77,12 @@ public class Home extends AppCompatActivity {
         TextView easy_score3 = (TextView) findViewById(R.id.easy_score3);
 
         Button medium_button = (Button) findViewById(R.id.medium_button);
+        ImageView medium_score0 = (ImageView) findViewById(R.id.medium_score0);
         TextView medium_score1 = (TextView) findViewById(R.id.medium_score1);
         TextView medium_score3 = (TextView) findViewById(R.id.medium_score3);
 
         Button hard_button = (Button) findViewById(R.id.hard_button);
+        ImageView hard_score0 = (ImageView) findViewById(R.id.hard_score0);
         TextView hard_score1 = (TextView) findViewById(R.id.hard_score1);
         TextView hard_score3 = (TextView) findViewById(R.id.hard_score3);
 
@@ -203,6 +205,7 @@ public class Home extends AppCompatActivity {
             medium_score1.setText(String.valueOf(score[1]));
             medium_score3.setText(String.valueOf("/" + Level.array[1].length * 3));
         } else {
+            medium_score0.setVisibility(View.VISIBLE);
             medium_button.setOnClickListener(null);
             medium_score1.setText(String.valueOf((int) (Math.round(Level.array[0].length * 3) * 0.5)));
         }
@@ -210,8 +213,10 @@ public class Home extends AppCompatActivity {
             hard_score1.setText(String.valueOf(score[2]));
             hard_score3.setText(String.valueOf("/" + Level.array[2].length * 3));
         } else {
+            hard_score0.setVisibility(View.VISIBLE);
             hard_button.setOnClickListener(null);
             hard_score1.setText(String.valueOf((int) (Math.round((Level.array[0].length * 3 + Level.array[1].length * 3) * 0.5))));
+
         }
     }
 
