@@ -250,16 +250,35 @@
 
     </RelativeLayout>
 
-    <CheckBox
-        android:id="@+id/sound"
-        android:layout_width="wrap_content"
+    <RelativeLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:text="@string/sound"
-        android:textColor="@color/colorAccent"
-        android:textSize="20sp"
-        android:visibility="gone" />
+        android:gravity="center">
+
+        <CheckBox
+            android:id="@+id/sound"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="30sp"
+            android:text="@string/sound"
+            android:textColor="@color/colorAccent"
+            android:textSize="20sp"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/clear_data"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/sound"
+            android:layout_margin="30sp"
+            android:text="@string/clear_data"
+            android:textColor="@color/colorAccent"
+            android:textSize="20sp"
+            android:visibility="gone" />
+
+    </RelativeLayout>
 
     <TextView
         android:id="@+id/credit_text"

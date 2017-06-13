@@ -19,6 +19,7 @@ public class Selection extends AppCompatActivity {
 
     //variable declaration
     private MediaPlayer mp;
+    private SharedPreferences sharedPreferences;
 
     //main method, start when the activity start
     @Override
@@ -41,6 +42,7 @@ public class Selection extends AppCompatActivity {
         //initialize variable
         ImageView back = (ImageView) findViewById(R.id.back);
         TextView selection = (TextView) findViewById(R.id.selection);
+        sharedPreferences = getSharedPreferences("ElecQuizz", Context.MODE_PRIVATE);
 
         //set fonts to view
         Typeface type = Typeface.createFromAsset(getAssets(), "fonts/Woolkarth-Bold Bold.ttf");
@@ -80,15 +82,8 @@ public class Selection extends AppCompatActivity {
     //click method start when you click on the level choice button
     private void click(int position, int level_type) {
         //start sound effect when the click method start if sound checkbox is check
-        SharedPreferences sharedPreferences = getSharedPreferences("ElecQuizz", Context.MODE_PRIVATE);
-        if(sharedPreferences.getBoolean("sound", true)) {
-            try {
-                if (mp.isPlaying()) {
-                    mp.stop();
-                    mp.release();
-                    mp = MediaPlayer.create(Selection.this, R.raw.sound);
-                } mp.start();
-            } catch(Exception e) { e.printStackTrace(); }
+        if (sharedPreferences.getBoolean("sound", true)) {
+            mp.start();
         }
 
         //start level activity with animation and say to level activity on which button you clicked
@@ -103,15 +98,8 @@ public class Selection extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         //start sound effect when the click method start if sound checkbox is check
-        SharedPreferences sharedPreferences = getSharedPreferences("ElecQuizz", Context.MODE_PRIVATE);
-        if(sharedPreferences.getBoolean("sound", true)) {
-            try {
-                if (mp.isPlaying()) {
-                    mp.stop();
-                    mp.release();
-                    mp = MediaPlayer.create(Selection.this, R.raw.sound);
-                } mp.start();
-            } catch(Exception e) { e.printStackTrace(); }
+        if (sharedPreferences.getBoolean("sound", true)) {
+            mp.start();
         }
 
         //start home activity with animation

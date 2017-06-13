@@ -35,7 +35,20 @@ public class Home extends AppCompatActivity {
     private RelativeLayout medium;
     private RelativeLayout hard;
     private CheckBox sound;
+    private TextView clear_data;
     private TextView credit_text;
+    private TextView easy_score1;
+    private TextView easy_score3;
+    private Button medium_button;
+    private ImageView medium_score0;
+    private TextView medium_score1;
+    private TextView medium_score3;
+    private Button hard_button;
+    private ImageView hard_score0;
+    private TextView hard_score1;
+    private TextView hard_score3;
+    private SharedPreferences sharedPreferences;
+    private SharedPreferences.Editor editor;
     public static MediaPlayer mp;
     public static MediaPlayer mpgood;
     public static MediaPlayer mpbad;
@@ -70,21 +83,24 @@ public class Home extends AppCompatActivity {
         medium = (RelativeLayout) findViewById(R.id.medium);
         hard = (RelativeLayout) findViewById(R.id.hard);
         sound = (CheckBox) findViewById(R.id.sound);
+        clear_data = (TextView) findViewById(R.id.clear_data);
         credit_text = (TextView) findViewById(R.id.credit_text);
+        sharedPreferences = getSharedPreferences("ElecQuizz", Context.MODE_PRIVATE);
+        editor = sharedPreferences.edit();
 
         Button easy_button = (Button) findViewById(R.id.easy_button);
-        TextView easy_score1 = (TextView) findViewById(R.id.easy_score1);
-        TextView easy_score3 = (TextView) findViewById(R.id.easy_score3);
+        easy_score1 = (TextView) findViewById(R.id.easy_score1);
+        easy_score3 = (TextView) findViewById(R.id.easy_score3);
 
-        Button medium_button = (Button) findViewById(R.id.medium_button);
-        ImageView medium_score0 = (ImageView) findViewById(R.id.medium_score0);
-        TextView medium_score1 = (TextView) findViewById(R.id.medium_score1);
-        TextView medium_score3 = (TextView) findViewById(R.id.medium_score3);
+        medium_button = (Button) findViewById(R.id.medium_button);
+        medium_score0 = (ImageView) findViewById(R.id.medium_score0);
+        medium_score1 = (TextView) findViewById(R.id.medium_score1);
+        medium_score3 = (TextView) findViewById(R.id.medium_score3);
 
-        Button hard_button = (Button) findViewById(R.id.hard_button);
-        ImageView hard_score0 = (ImageView) findViewById(R.id.hard_score0);
-        TextView hard_score1 = (TextView) findViewById(R.id.hard_score1);
-        TextView hard_score3 = (TextView) findViewById(R.id.hard_score3);
+        hard_button = (Button) findViewById(R.id.hard_button);
+        hard_score0 = (ImageView) findViewById(R.id.hard_score0);
+        hard_score1 = (TextView) findViewById(R.id.hard_score1);
+        hard_score3 = (TextView) findViewById(R.id.hard_score3);
 
         //set fonts to view
         Typeface type = Typeface.createFromAsset(getAssets(), "fonts/Woolkarth-Bold Bold.ttf");
@@ -101,16 +117,8 @@ public class Home extends AppCompatActivity {
         hard_score1.setTypeface(type);
         hard_score3.setTypeface(type);
         sound.setTypeface(type);
+        clear_data.setTypeface(type);
         credit_text.setTypeface(type);
-
-        //get the score from cache
-        final SharedPreferences sharedPreferences = getSharedPreferences("ElecQuizz", Context.MODE_PRIVATE);
-        int score[] = new int[3];
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < Level.array[i].length; j++) {
-                score[i] = score[i] + sharedPreferences.getInt(i + ":" + j, 0);
-            }
-        }
 
         //launch click methode with id of witch one just click, on click
         play.setOnClickListener(new View.OnClickListener() {
@@ -173,18 +181,28 @@ public class Home extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton buttonView,
                                          boolean isChecked) {
                 if (isChecked) {
-                    SharedPreferences sharedPreferences = getSharedPreferences("ElecQuizz", Context.MODE_PRIVATE);
-                    SharedPreferences.Editor editor = sharedPreferences.edit();
                     editor.putBoolean("sound", true);
-                    editor.apply();
                 } else {
-                    SharedPreferences sharedPreferences = getSharedPreferences("ElecQuizz", Context.MODE_PRIVATE);
-                    SharedPreferences.Editor editor = sharedPreferences.edit();
                     editor.putBoolean("sound", false);
-                    editor.apply();
                 }
+                editor.apply();
             }
         });
+
+        //clear data by removing shared preferences
+        clear_data.setOnClickListener(new View.OnClickListener() {
+                                          @Override
+                                          public void onClick(View view) {
+                                              editor.clear();
+                                              editor.apply();
+                                              click("back");
+                                              score();
+                                          }
+                                      }
+        );
+
+        //display score on difficulty menu items
+        score();
 
         //display or hide view when you're on home screen
         if (getIntent().getIntExtra("home", 0) == 1) {
@@ -196,6 +214,17 @@ public class Home extends AppCompatActivity {
             easy.setVisibility(View.VISIBLE);
             medium.setVisibility(View.VISIBLE);
             hard.setVisibility(View.VISIBLE);
+        }
+    }
+
+    //display score on difficulty menu items
+    private void score() {
+        //get the score from cache
+        int score[] = new int[3];
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < Level.array[i].length; j++) {
+                score[i] = score[i] + sharedPreferences.getInt(i + ":" + j, 0);
+            }
         }
 
         //show score on levels buttons
@@ -223,18 +252,8 @@ public class Home extends AppCompatActivity {
     //click method start when you click on a view
     private void click(String whichOne) {
         //start sound effect when the click method start if sound checkbox is check
-        SharedPreferences sharedPreferences = getSharedPreferences("ElecQuizz", Context.MODE_PRIVATE);
         if (sharedPreferences.getBoolean("sound", true)) {
-            try {
-                if (mp.isPlaying()) {
-                    mp.stop();
-                    mp.release();
-                    mp = MediaPlayer.create(Home.this, R.raw.sound);
-                }
-                mp.start();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            mp.start();
         }
 
         //get windows width and height
@@ -282,6 +301,12 @@ public class Home extends AppCompatActivity {
                 ObjectAnimator animsound = ObjectAnimator.ofFloat(sound, View.TRANSLATION_X, -1 * width, 0);
                 animsound.setDuration(200);
                 animsound.start();
+
+                //display clear_data button with animation
+                clear_data.setVisibility(View.VISIBLE);
+                ObjectAnimator animclear_data = ObjectAnimator.ofFloat(clear_data, View.TRANSLATION_X, -1 * width, 0);
+                animclear_data.setDuration(400);
+                animclear_data.start();
 
             }//else if you clicked on credit
             else if (Objects.equals(whichOne, "credit")) {
@@ -334,6 +359,7 @@ public class Home extends AppCompatActivity {
                         credit.setVisibility(View.VISIBLE);
                         title.setVisibility(View.VISIBLE);
                         sound.setVisibility(View.GONE);
+                        clear_data.setVisibility(View.GONE);
                         credit_text.setVisibility(View.GONE);
                     }
                 });
@@ -353,6 +379,11 @@ public class Home extends AppCompatActivity {
                 ObjectAnimator animsound = ObjectAnimator.ofFloat(sound, View.TRANSLATION_X, 0, -1 * width);
                 animsound.setDuration(200);
                 animsound.start();
+
+                //set animation for sound button
+                ObjectAnimator animclear_data = ObjectAnimator.ofFloat(clear_data, View.TRANSLATION_X, 0, -1 * width);
+                animclear_data.setDuration(400);
+                animclear_data.start();
 
                 //set animation for credit button
                 ObjectAnimator animcredit = ObjectAnimator.ofFloat(credit_text, View.TRANSLATION_Y, 0, height);
