@@ -33,44 +33,56 @@ public class Level extends AppCompatActivity {
     private MediaPlayer mp;
     private MediaPlayer mpgood;
     private MediaPlayer mpbad;
-    public final static String[][][] array =
-            {
-                    {//EASY
-                            {"4V", "5V", "6V", "2V", "2"},//answer1, answer2, answer3, answer4, id of correct answer
-                            {"3V", "5V", "7V", "1V", "1"},
-                            {"4A", "5A", "2A", "1,2A", "1"},
-                            {"0,75", "0,5V", "1,5V", "0,25V", "2"},
-                            {"100", "75", "50", "40", "3"},
-                            {"0,01A", "0,05A", "0,1V", "0.1A", "4"},
-                            {"2*Z1+Z2", "Z1/(Z1+Z2)", "Z2/(Z1+Z2)", "2*Z2+Z1", "2"},
-                            {"300", "500", "250", "400", "1"},
-                            {"5V", "20V", "10V", "15V", "3"},
-                            {"3V", "5V", "8V", "2V", "4"},
-                            {"4,2V", "2V", "4V", "1V", "3"},
-                            {"0.01A", "100mA", "20mA", "0.2A", "2"},
-                            {"0.02A", "400mA", "250mA", "0.2A", "1"},
-                            {"(E1+E2-E3)/(Rg1+Rg2+Rg3+R1+R2+R3)", "(E1-E2-E3)/(Rg1+Rg2+Rg3+R1+R2+R3)", "(E1+E2+E3)/(Rg1+Rg2+Rg3+R1+R2+R3)", "(E1+E2-E3)/(Rg1+Rg2+Rg3-R1-R2-R3)", "1"},
-                            {"6A", "10A", "4A", "2A", "3"}
-                            },
-                            {//MEDIUM
-                                    {"16.4", "14.6", "95", "380", "2"},//answer1, answer2, answer3, answer4, id of correct answer
-                                    {"3V", "5V", "6.5V", "7.5V", "3"},
-                                    {"A Completer", "A Completer", "A Completer", "A Completer", "2"},
-                                    {"100", "68", "32", "14", "3"},
-                                    {"2/13", "4/15", "5/12", "0,5", "1"},
-                                    {"A Completer", "A Completer", "A Completer", "A Completer", "2"},
-                                    {"2/350", "4/225", "2/450", "2/225", "3"},
-                                    {"A Completer", "A Completer", "A Completer", "A Completer", "2"}
-                            },
-                            {//HARD
-                                    {"du/dt+(1/R)*U=0", "du/dt+(1/RL)*U=0", "RL*(du/dt)+(1/L)*U=0", "du/dt+(R/L)*U=0", "4"},
-                                    {"di/dt+(1/LC)*i=0", "di/dt+(L/C)*i=0", "di/dt+(1/C)*i=0", "di/dt+(1/LC²)*i=0", "1"},
-                                    {"(du²/d²t)+(RC)*dU/dt+(L/C)*U=0", "(du²/d²t)+(R/C)*dU/dt+(L/C)*U=0", "(du²/d²t)+(1/RC)*dU/dt+(1/LC)*U=0", "(du²/d²t)+(1/RC)*dU/dt+(C/L)*U=0", "3"},
-                                    {"(di²/d²t)+(RL)*di/dt+(C/L)*i=0", "(di²/d²t)+(RL)*di/dt+(1/LC)*i=0", "(di²/d²t)+(1/L)*di/dt+(1/LC)*i=0", "(di²/d²t)+(R/L)*di/dt+(1/LC)*i=0", "4"},
-                            }
-                    };
-
-
+    public final static String[][][] array = {
+            {//EASY
+                    {"I1=I2+I3+I4", "I1=I2-I3+I4", "I1=I2+I3-I4", "I1=-I2-I3+I4", "3" },//answer1, answer2, answer3, answer4, id of correct answer
+                    {"E=-U1-U2+U3", "E=U1-U2-U3", "E=-U1+U2-U3", "E=U1-U2+U3", "4" },
+                    {"5A", "4A", "3A", "6A", "2" },
+                    {"U=R1*I", "U=R1+I", "U=I/R1", "U=R1/I", "1" },
+                    {"I=E*R", "I=E/R", "I=R/E", "I=E-R", "2" },
+                    {"5V", "4V", "10V", "-5V", "1" },
+                    {"R1+R2", "R1*R2", "R1/R2", "R1-R2", "1" },
+                    {"R1-R2/(R1+R2)", "R1+R2/(R1*R2)", "R1*R2/(R1-R2)", "R1*R2/(R1+R2)", "4" },
+                    {"100\u200EΩ", "150\u200EΩ", "300\u200EΩ", "200\u200EΩ", "3" },
+                    {"200\u200EΩ", "50\u200EΩ", "25\u200EΩ", "100\u200EΩ", "2" },
+                    {"I=E/(R1+R2+R3)", "I=(R1+R2+R3)/E", "I=E/(R1-R2-R3)", "I=E*(R1+R2+R3)", "1" },
+                    {"I2=(I*(1/R2))/((1/R1)+(1/R2))", "I2=(I*(1/R2))/((1/R1)*(1/R2))", "I2=(I*(1/R2))*((1/R1)+(1/R2))", "I2=(I*(R2))/((R1)+(R2))", "1" },
+                    {"U2=(R1+R2)/(E*R2)", "U2=(E*R2)*(R1+R2)", "U2=(E*R2)/(R1-R2)", "U2=(E*R2)/(R1+R2)", "4" },
+                    {"3V", "1V", "2V", "6V", "2" },
+                    {"0.5A", "0.25A", "0.75A", "0.05A", "1" },
+                    {"I=E*R1", "I=R1/E", "I=E/R1", "I=(E+R1)/R1", "3" },
+                    {"E=R1*I", "E=R1/I", "E=I/R1", "E=R1+I", "1" },
+                    {"2.3V", "1.75V", "1.6V", "1.9V", "1" },
+                    {"15V", "5V", "10V", "-10V", "3" },
+                    {"(E1+E2-E3)/(Rg1+Rg2+Rg3+R1+R2+R3)", "(-E1-E2+E3)/(Rg1+Rg2+Rg3+R1+R2+R3)", "(E1+E2+E3)/(Rg1+Rg2+Rg3+R1+R2+R3)", "(E1+E2-E3)*(Rg1+Rg2+Rg3-R1-R2-R3)", "1" },},
+            {//MEDIUM
+                    {"0.01A", "0.05A", "0.1A", "0.5A", "4" },
+                    {"Z=R+jwL-(1/jwC)", "Z=R+jwL+(1/jwC)", "Z=R+jwC+(1/jwL)", "Z=R+(1/jwL)+(1/jwC)", "2" },
+                    {"Z1/(Z1+Z2)", "Z1*(Z1+Z2)", "Z1/(Z1-Z2)", "(Z1+Z2/(Z1)", "1" },
+                    {"R/(JwC+1)", "(JwC+1)/R", "R/(JwC-1)", "R*(JwC+1)", "1" },
+                    {"16.4\u200EΩ", "14.6\u200EΩ", "95\u200EΩ", "380\u200EΩ", "2" },
+                    {"3V", "5V", "6.5V", "7.5V", "3" },
+                    {"2.2V", "1.5V", "3V", "2.6V", "1" },
+                    {"12\u200EΩ", "8\u200EΩ", "10\u200EΩ", "6\u200EΩ", "3" },
+                    {"P=(U*I or RI²)", "P=(U/I or R/I²)", "P=(U/I or RI²)", "P=(U*I or RI)", "4" },
+                    {"1W", "10W", "0.1W", "5W", "1" },
+                    {"jwRC/(1-jwRC)", "(1+jwRC)/jwRC", "jwRC/(1+jwRC)", "jwRC*(1+jwRC)", "3" },
+                    {"jw(L/R)/1+jWL)", "jw(L/R)/R+jWL)", "jwLR/R+jWL)", "(R+jWL)/jw(L/R)", "2" },
+                    {"1/RC", "R/C", "C/R", "RC", "1" },
+                    {"R/L", "L/R", "RL", "1/(RL)", "1" },
+                    {"5A", "1A", "3A", "4A", "4" },},
+            {//HARD
+                    {"2/350A", "4/225A", "2/450A", "2/225A", "3" },
+                    {"7.1V", "8.2V", "5V", "6.4V", "1" },
+                    {"120\u200EΩ", "136\u200EΩ", "137\u200EΩ", "140\u200EΩ", "3" },
+                    {"2/13V", "4/15V", "5/12V", "0,5V", "1" },
+                    {"H=1/(1+jQ((w/wo)-(wo/w)))", "H=1/(1-jQ((w/wo)-(wo/w)))", "H=1/(1+jQ((w/wo)+(wo/w)))", "H=1/(1+jQ((wo/w)-(wo/w)))", "1" },
+                    {"dU/(dt)+U/RC=E", "dU/(dt)+UR/C=E", "dU/(dt)+U*RC=E", "dU/(dt)+UC/R=E", "1" },
+                    {"du/dt+(1/R)*U=0", "du/dt+(1/RL)*U=0", "RL*(du/dt)+(1/L)*U=0", "du/dt+(R/L)*U=0", "4" },
+                    {"di/dt+(1/LC)*i=0", "di/dt+(L/C)*i=0", "di/dt+(1/C)*i=0", "di/dt+(1/LC²)*i=0", "1" },
+                    {"(du²/d²t)+(RC)*dU/dt+(L/C)*U=0", "(du²/d²t)+(R/C)*dU/dt+(L/C)*U=0", "(du²/d²t)+(1/RC)*dU/dt+(1/LC)*U=0", "(du²/d²t)+(1/RC)*dU/dt+(C/L)*U=0", "3" },
+                    {"(di²/d²t)+(RL)*di/dt+(C/L)*i=0", "(di²/d²t)+(RL)*di/dt+(1/LC)*i=0", "(di²/d²t)+(1/L)*di/dt+(1/LC)*i=0", "(di²/d²t)+(R/L)*di/dt+(1/LC)*i=0", "4" },}
+    };
 
     //main method, start when the activity start
     @Override
