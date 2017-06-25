@@ -30,59 +30,59 @@ public class Level extends AppCompatActivity {
     private int level_id;
     private int badAnswer = 0;
     private SharedPreferences sharedPreferences;
-    private final int reverselist[] = new int[4];
+    private int goodanswerid;
     private MediaPlayer mp;
     private MediaPlayer mpgood;
     private MediaPlayer mpbad;
     public final static String[][][] array = {
             {//EASY
-                    {"I1=I2+I3+I4", "I1=I2-I3+I4", "I1=I2+I3-I4", "I1=-I2-I3+I4", "3"},//answer1, answer2, answer3, answer4, id of correct answer
-                    {"E=-U1-U2+U3", "E=U1-U2-U3", "E=-U1+U2-U3", "E=U1-U2+U3", "4"},
-                    {"5A", "4A", "3A", "6A", "2"},
-                    {"U=R1*I", "U=R1+I", "U=I/R1", "U=R1/I", "1"},
-                    {"I=E*R", "I=E/R", "I=R/E", "I=E-R", "2"},
-                    {"5V", "4V", "10V", "-5V", "1"},
-                    {"R1+R2", "R1*R2", "R1/R2", "R1-R2", "1"},
-                    {"R1-R2/(R1+R2)", "R1+R2/(R1*R2)", "R1*R2/(R1-R2)", "R1*R2/(R1+R2)", "4"},
-                    {"100\u200EΩ", "150\u200EΩ", "300\u200EΩ", "200\u200EΩ", "3"},
-                    {"200\u200EΩ", "50\u200EΩ", "25\u200EΩ", "100\u200EΩ", "2"},
-                    {"I=E/(R1+R2+R3)", "I=(R1+R2+R3)/E", "I=E/(R1-R2-R3)", "I=E*(R1+R2+R3)", "1"},
-                    {"I2=(I*(1/R2))/((1/R1)+(1/R2))", "I2=(I*(1/R2))/((1/R1)*(1/R2))", "I2=(I*(1/R2))*((1/R1)+(1/R2))", "I2=(I*(R2))/((R1)+(R2))", "1"},
-                    {"U2=(R1+R2)/(E*R2)", "U2=(E*R2)*(R1+R2)", "U2=(E*R2)/(R1-R2)", "U2=(E*R2)/(R1+R2)", "4"},
-                    {"3V", "1V", "2V", "6V", "2"},
-                    {"0.5A", "0.25A", "0.75A", "0.05A", "1"},
-                    {"I=E*R1", "I=R1/E", "I=E/R1", "I=(E+R1)/R1", "3"},
-                    {"E=R1*I", "E=R1/I", "E=I/R1", "E=R1+I", "1"},
-                    {"2.3V", "1.75V", "1.6V", "1.9V", "1"},
-                    {"15V", "5V", "10V", "-10V", "3"},
-                    {"(E1+E2-E3)/(Rg1+Rg2+Rg3+R1+R2+R3)", "(-E1-E2+E3)/(Rg1+Rg2+Rg3+R1+R2+R3)", "(E1+E2+E3)/(Rg1+Rg2+Rg3+R1+R2+R3)", "(E1+E2-E3)*(Rg1+Rg2+Rg3-R1-R2-R3)", "1"},},
+                    {"I1=I2+I3-I4", "I1=I2+I3+I4", "I1=I2-I3+I4", "I1=-I2-I3+I4"},//good answer, bad answer, bad answer, bad answer
+                    {"E=U1-U2+U3", "E=-U1-U2+U3", "E=U1-U2-U3", "E=-U1+U2-U3"},
+                    {"4A", "5A", "3A", "6A"},
+                    {"U=R1*I", "U=R1+I", "U=I/R1", "U=R1/I"},
+                    {"I=E/R", "I=E*R", "I=R/E", "I=E-R"},
+                    {"5V", "4V", "10V", "-5V"},
+                    {"R1+R2", "R1*R2", "R1/R2", "R1-R2"},
+                    {"R1*R2/(R1+R2)", "(R1-R2)/(R1+R2)", "(R1+R2)/(R1*R2)", "R1*R2/(R1-R2)"},
+                    {"300Ω", "100Ω", "150Ω", "200Ω"},
+                    {"50Ω", "200Ω", "25Ω", "100Ω"},
+                    {"I=E/(R1+R2+R3)", "I=(R1+R2+R3)/E", "I=E/(R1-R2-R3)", "I=E*(R1+R2+R3)"},
+                    {"I2=I*(1/R2)/((1/R1)+(1/R2))", "I2=I*(1/R2)/((1/R1)*(1/R2))", "I2=I*(1/R2)*((1/R1)+(1/R2))", "I2=I*(R2)/((R1)+(R2))"},
+                    {"U2=E*R2/(R1+R2)", "U2=(R1+R2)/(E*R2)", "U2=E*R2*(R1+R2)", "U2=E*R2/(R1-R2)"},
+                    {"1V", "3V", "2V", "6V"},
+                    {"0.5A", "0.25A", "0.75A", "0.05A"},
+                    {"I=E/R1", "I=E*R1", "I=R1/E", "I=(E+R1)/R1"},
+                    {"E=R1*I", "E=R1/I", "E=I/R1", "E=R1+I"},
+                    {"2.3V", "1.75V", "1.6V", "1.9V"},
+                    {"10V", "15V", "5V", "-10V"},
+                    {"(E1+E2-E3)/(Rg1+Rg2+Rg3+R1+R2+R3)", "(-E1-E2+E3)/(Rg1+Rg2+Rg3+R1+R2+R3)", "(E1+E2+E3)/(Rg1+Rg2+Rg3+R1+R2+R3)", "(E1+E2-E3)*(Rg1+Rg2+Rg3-R1-R2-R3)"},},
             {//MEDIUM
-                    {"0.01A", "0.05A", "0.1A", "0.5A", "4"},
-                    {"Z=R+jwL-(1/jwC)", "Z=R+jwL+(1/jwC)", "Z=R+jwC+(1/jwL)", "Z=R+(1/jwL)+(1/jwC)", "2"},
-                    {"Z1/(Z1+Z2)", "Z1*(Z1+Z2)", "Z1/(Z1-Z2)", "(Z1+Z2/(Z1)", "1"},
-                    {"R/(JwC+1)", "(JwC+1)/R", "R/(JwC-1)", "R*(JwC+1)", "1"},
-                    {"16.4\u200EΩ", "14.6\u200EΩ", "95\u200EΩ", "380\u200EΩ", "2"},
-                    {"3V", "5V", "6.5V", "7.5V", "3"},
-                    {"2.2V", "1.5V", "3V", "2.6V", "1"},
-                    {"12\u200EΩ", "8\u200EΩ", "10\u200EΩ", "6\u200EΩ", "3"},
-                    {"0.015A", "0.025A", "0.05A", "0.15A", "1"},
-                    {"P=(U*I or R²I)", "P=(U/I or R/I²)", "P=(U/I or RI²)", "P=(U*I or RI²)", "4"},
-                    {"1W", "0.01W", "0.1W", "0.5W", "2"},
-                    {"jwRC/(1-jwRC)", "(1+jwRC)/jwRC", "jwRC/(1+jwRC)", "jwRC*(1+jwRC)", "3"},
-                    {"jw(L/R)/1+jWL)", "jw(L/R)/R+jWL)", "jwLR/R+jWL)", "(R+jWL)/jw(L/R)", "2"},
-                    {"1/RC", "R/C", "C/R", "RC", "1"},
-                    {"R/L", "L/R", "RL", "1/(RL)", "1"},},
+                    {"0.5A", "0.01A", "0.05A", "0.1A"},
+                    {"Z=R+jωL+(1/jωC)", "Z=R+jωL-(1/jωC)", "Z=R+jωC+(1/jωL)", "Z=R+(1/jωL)+(1/jωC)"},
+                    {"Z1/(Z1+Z2)", "Z1*(Z1+Z2)", "Z1/(Z1-Z2)", "(Z1+Z2)/Z1"},
+                    {"R/(jωC+1)", "(jωC+1)/R", "R/(JωC-1)", "R*(JωC+1)"},
+                    {"14.6Ω", "16.4Ω", "95Ω", "380Ω"},
+                    {"6.5V", "3V", "5V", "7.5V"},
+                    {"2.2V", "1.5V", "3V", "2.6V"},
+                    {"10Ω", "12Ω", "8Ω", "6Ω"},
+                    {"0.015A", "0.025A", "0.05A", "0.15A"},
+                    {"P= U*I or R*I²", "P= U*I or R²*I", "P= U/I or R/I²", "P= U/I or R*I²"},
+                    {"0.01W", "1W", "0.1W", "0.5W"},
+                    {"jωRC/(1+jωRC)", "jωRC/(1-jωRC)", "(1+jωRC)/jωRC", "jωRC*(1+jωRC)"},
+                    {"jω(L/R)/(R+jωL)", "jω(L/R)/(1+jωL)", "jωLR/(R+jWL)", "(R+jωL)/jω(L/R)"},
+                    {"1/RC", "R/C", "C/R", "RC"},
+                    {"R/L", "L/R", "RL", "1/RL"},},
             {//HARD
-                    {"2/350A", "4/225A", "2/450A", "2/225A", "3"},
-                    {"7.1V", "8.2V", "5V", "6.4V", "1"},
-                    {"120\u200EΩ", "136\u200EΩ", "137\u200EΩ", "140\u200EΩ", "3"},
-                    {"i=u/(1-W²LC)", "i=u/(1+W²LC)", "i=u/(1-WLC)", "i=u/(1-WL²C²)", "1"},
-                    {"H=1/(1+jQ((w/wo)-(wo/w)))", "H=1/(1-jQ((w/wo)-(wo/w)))", "H=1/(1+jQ((w/wo)+(wo/w)))", "H=1/(1+jQ((wo/w)-(wo/w)))", "1"},
-                    {"(du/dt)+u/RC=E/RC", "(du/dt)+uR/C=E/RC", "(du/dt)+u*RC=E/RC", "(du/dt)+uC/R=E", "1"},
-                    {"di/dt+(1/R)*i=E/L", "di/dt+(1/RL)*i=E/L", "RL*(di/dt)+(1/L)*i=E/L", "di/dt+(R/L)*i=E/L", "4"},
-                    {"du/dt+(1/RC)*u=i/C", "du/dt+(1/C)*u=i/C", "di/dt+(1/RC)*i=i", "di/dt+(R/C²)*i=i/C", "1"},
-                    {"(du²/d²t)+(RC)*dU/dt+(L/C)*U=i/C", "(du²/d²t)+(R/C)*dU/dt+(L/C)*U=i/C", "(du²/d²t)+(1/RC)*dU/dt+(1/LC)*U=i/C", "(du²/d²t)+(1/RC)*dU/dt+(C/L)*U=i/C", "3"},
-                    {"(di²/d²t)+(RL)*di/dt+(C/L)*i=0", "(di²/d²t)+(RL)*di/dt+(1/LC)*i=0", "(di²/d²t)+(1/L)*di/dt+(1/LC)*i=0", "(di²/d²t)+(R/L)*di/dt+(1/LC)*i=0", "4"},}
+                    {"2/450A", "2/350A", "4/225A", "2/225A"},
+                    {"7.1V", "8.2V", "5V", "6.4V"},
+                    {"136Ω", "137Ω", "120Ω", "140Ω"},
+                    {"I=U/(1-ω²LC)", "I=U/(1+ω²LC)", "I=U/(1-ωLC)", "I=U/(1-ωL²C²)"},
+                    {"H=1/(1+jQ((ω/ω0)-(ω0/ω)))", "H=1/(1-jQ((ω/ω0)-(ω0/ω)))", "H=1/(1+jQ((ω/ω0)+(ω0/ω)))", "H=1/(1+jQ((ω0/ω)-(ω0/ω)))"},
+                    {"(dU/dt)+U/RC=E/RC", "(dU/dt)+UR/C=E/RC", "(dU/dt)+U*RC=E/RC", "(dU/dt)+UC/R=E"},
+                    {"RL*(dI/dt)+(1/L)*I=E/L", "dI/dt+(1/R)*I=E/L", "dI/dt+(1/RL)*I=E/L", "dI/dt+(R/L)*I=E/L"},
+                    {"dU/dt+(1/RC)*U=I/C", "dU/dt+(1/C)*U=I/C", "dI/dt+(1/RC)*I=I", "dI/dt+(R/C²)*I=I/C"},
+                    {"(dU²/d²t)+(1/RC)*dU/dt+(1/LC)*U=I/C", "(dU²/d²t)+(RC)*dU/dt+(L/C)*U=I/C", "(dU²/d²t)+(R/C)*dU/dt+(L/C)*U=I/C", "(dU²/d²t)+(1/RC)*dU/dt+(C/L)*U=I/C"},
+                    {"(dI²/d²t)+(R/L)*dI/dt+(1/LC)*I=0", "(dI²/d²t)+(RL)*dI/dt+(C/L)*I=0", "(dI²/d²t)+(RL)*dI/dt+(1/LC)*I=0", "(dI²/d²t)+(1/L)*dI/dt+(1/LC)*I=0"},}
     };
 
     //main method, start when the activity start
@@ -121,12 +121,12 @@ public class Level extends AppCompatActivity {
 
         //set fonts to view
         Typeface type = Typeface.createFromAsset(getAssets(), "fonts/Woolkarth-Bold Bold.ttf");
-        level.setTypeface(type);
+        level.setTypeface(type);/*
         answer1.setTypeface(type);
         answer2.setTypeface(type);
         answer3.setTypeface(type);
         answer4.setTypeface(type);
-
+*/
         //set title with level type and id
         String nameImage = "";
         if (level_type == 0) {
@@ -144,7 +144,7 @@ public class Level extends AppCompatActivity {
         int resImage = getResources().getIdentifier(nameImage, "drawable", getPackageName());
         image.setImageResource(resImage);
 
-        //shuffle answer
+        //shuffle answers
         List<Integer> list = new ArrayList<>();
         list.add(0);
         list.add(1);
@@ -158,9 +158,11 @@ public class Level extends AppCompatActivity {
         answer3.setText(array[level_type][level_id][list.get(2)]);
         answer4.setText(array[level_type][level_id][list.get(3)]);
 
-        //find reverse shuffle list
-        for (int i = 0; i < reverselist.length; i++) {
-            reverselist[list.get(i)] = i;
+        //find good answer
+        for (int i = 0; i < 4; i++) {
+            if (list.get(i) == 0) {
+                goodanswerid = i;
+            }
         }
 
         //action when you clicked on view
@@ -174,28 +176,28 @@ public class Level extends AppCompatActivity {
         answer1.setOnClickListener(new View.OnClickListener() {
                                        @Override
                                        public void onClick(View view) {
-                                           click(1);
+                                           click(0);
                                        }
                                    }
         );
         answer2.setOnClickListener(new View.OnClickListener() {
                                        @Override
                                        public void onClick(View view) {
-                                           click(2);
+                                           click(1);
                                        }
                                    }
         );
         answer3.setOnClickListener(new View.OnClickListener() {
                                        @Override
                                        public void onClick(View view) {
-                                           click(3);
+                                           click(2);
                                        }
                                    }
         );
         answer4.setOnClickListener(new View.OnClickListener() {
                                        @Override
                                        public void onClick(View view) {
-                                           click(4);
+                                           click(3);
                                        }
                                    }
         );
@@ -204,7 +206,7 @@ public class Level extends AppCompatActivity {
     //click method start when you click on a view
     private void click(int answer) {
         //if the answer is good
-        if (answer - 1 == reverselist[Integer.parseInt(array[level_type][level_id][4]) - 1]) {
+        if (answer == goodanswerid) {
             //start sound effect when the click method start if sound checkbox is check
             if (sharedPreferences.getBoolean("sound", true)) {
                 mpgood.start();
@@ -230,13 +232,13 @@ public class Level extends AppCompatActivity {
             }
 
             //set answer button background and text color
-            if (answer == 1) {
+            if (answer == 0) {
                 answer1.setBackgroundColor(ContextCompat.getColor(Level.this, R.color.colorGreen));
                 answer1.setTextColor(ContextCompat.getColor(Level.this, R.color.colorAccent));
-            } else if (answer == 2) {
+            } else if (answer == 1) {
                 answer2.setBackgroundColor(ContextCompat.getColor(Level.this, R.color.colorGreen));
                 answer2.setTextColor(ContextCompat.getColor(Level.this, R.color.colorAccent));
-            } else if (answer == 3) {
+            } else if (answer == 2) {
                 answer3.setBackgroundColor(ContextCompat.getColor(Level.this, R.color.colorGreen));
                 answer3.setTextColor(ContextCompat.getColor(Level.this, R.color.colorAccent));
             } else {
@@ -270,13 +272,13 @@ public class Level extends AppCompatActivity {
 
             //set answer button background and text color
             badAnswer++;
-            if (answer == 1) {
+            if (answer == 0) {
                 answer1.setBackgroundColor(ContextCompat.getColor(Level.this, R.color.colorRed));
                 answer1.setTextColor(ContextCompat.getColor(Level.this, R.color.colorAccent));
-            } else if (answer == 2) {
+            } else if (answer == 1) {
                 answer2.setBackgroundColor(ContextCompat.getColor(Level.this, R.color.colorRed));
                 answer2.setTextColor(ContextCompat.getColor(Level.this, R.color.colorAccent));
-            } else if (answer == 3) {
+            } else if (answer == 2) {
                 answer3.setBackgroundColor(ContextCompat.getColor(Level.this, R.color.colorRed));
                 answer3.setTextColor(ContextCompat.getColor(Level.this, R.color.colorAccent));
             } else {

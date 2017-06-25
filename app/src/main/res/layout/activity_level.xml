@@ -55,7 +55,7 @@
         android:id="@+id/linearLayout">
 
         <Button
-            android:textSize="20sp"
+            android:textAllCaps="false"
             style="@style/Widget.AppCompat.Button.Colored"
             android:textColor="@color/colorPrimary"
             android:id="@+id/answer1"
@@ -64,7 +64,7 @@
             android:layout_weight="1" />
 
         <Button
-            android:textSize="20sp"
+            android:textAllCaps="false"
             style="@style/Widget.AppCompat.Button.Colored"
             android:textColor="@color/colorPrimary"
             android:id="@+id/answer2"
@@ -82,7 +82,7 @@
         android:layout_alignParentBottom="true">
 
         <Button
-            android:textSize="20sp"
+            android:textAllCaps="false"
             style="@style/Widget.AppCompat.Button.Colored"
             android:textColor="@color/colorPrimary"
             android:id="@+id/answer3"
@@ -91,7 +91,7 @@
             android:layout_weight="1" />
 
         <Button
-            android:textSize="20sp"
+            android:textAllCaps="false"
             style="@style/Widget.AppCompat.Button.Colored"
             android:textColor="@color/colorPrimary"
             android:id="@+id/answer4"
